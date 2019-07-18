@@ -4,7 +4,8 @@
 \alias{write_command_via_csv}
 \title{Write csv files with indicated commands to the external system}
 \usage{
-write_command_via_csv(x, path_terminal, fileName = "SystemControl")
+write_command_via_csv(x, path_terminal = "",
+  fileName = "SystemControl")
 }
 \arguments{
 \item{x}{- dataframe object with resulting command e.g. 1 - enable; 0 - disable}
@@ -25,17 +26,20 @@ Function is capable to read the data and  writing multiple files e.g. 'SystemCon
 }
 \examples{
 
+
 library(tidyverse)
 library(lubridate)
+library(lazytrade)
 DFT1 <- import_data(trade_log_file = system.file("extdata",
                                                  "OrdersResultsT1.csv",
                                                  package = "lazytrade"),
                     demo_mode = TRUE)
 
+dir <- normalizePath(tempdir(),winslash = "/")
 DFT1 \%>\%
 group_by(MagicNumber) \%>\% select(MagicNumber) \%>\% mutate(IsEnabled = 0) \%>\%
-# write commands to disable systems
-write_command_via_csv(tempdir())
+# write commands to disable/enable systems
+write_command_via_csv(path_terminal = file.path(dir))
 
 
 

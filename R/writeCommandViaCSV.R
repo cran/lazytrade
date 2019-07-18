@@ -18,6 +18,8 @@
 #'
 #' @examples
 #'
+#'
+#'
 #' library(tidyverse)
 #' library(lubridate)
 #' DFT1 <- import_data(trade_log_file = system.file("extdata",
@@ -25,23 +27,25 @@
 #'                                                  package = "lazytrade"),
 #'                     demo_mode = TRUE)
 #'
+#' dir <- normalizePath(tempdir(),winslash = "/")
 #' DFT1 %>%
 #' group_by(MagicNumber) %>% select(MagicNumber) %>% mutate(IsEnabled = 0) %>%
 #' # write commands to disable systems
-#' writeCommandViaCSV(tempdir())
+#' writeCommandViaCSV(path_terminal = file.path(dir))
 #'
 #'
 #'
-#'
-writeCommandViaCSV <- function(x, path_terminal, fileName = "SystemControl"){
+writeCommandViaCSV <- function(x, path_terminal = "", fileName = "SystemControl"){
+  .Deprecated("write_command_via_csv",msg = "using new function naming conventions")
   # check if the provided object 'x' exists and that it's not empty
   if(exists("x") == TRUE && nrow(x) != 0) {
     # for loop to go through the object x
     for(i in 1:nrow(x))
     {
       # write the file for MQL4 usage
-      write.csv(x[i, ], file = paste0(path_terminal, fileName, as.character(x[i, 1]), ".csv"),
-                row.names = FALSE)
+      composed_name <- paste0(fileName, as.character(x[i, 1]), ".csv")
+      f_name <- file.path(path_terminal, composed_name)
+      write.csv(x[i, ], file = f_name, row.names = FALSE)
     }
   }
 }

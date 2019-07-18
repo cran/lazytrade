@@ -14,6 +14,7 @@
 #'
 #' @examples
 #'
+#'
 #' library(tidyverse)
 #' library(magrittr)
 #' data(TradeStatePolicy)
@@ -21,7 +22,7 @@
 #' record_policy(x = TradeStatePolicy,
 #'               last_result = "tradewin",
 #'               trading_system = 8118101,
-#'               path_terminal = tempdir())
+#'               path_terminal = tempfile())
 #'
 #'
 #'

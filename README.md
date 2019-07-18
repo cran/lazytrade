@@ -5,10 +5,15 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/vzhomeexperiments/lazytrade.svg?branch=master)](https://travis-ci.org/vzhomeexperiments/lazytrade)
+[![codecov](https://codecov.io/gh/vzhomeexperiments/lazytrade/branch/master/graph/badge.svg)](https://codecov.io/gh/vzhomeexperiments/lazytrade)
 <!-- badges: end -->
 
 The goal of lazytrade is to keep all functions and scripts of the lazy
-trade project
+trade educational project. Provided functions are providing an
+opportunity to learn Computer and Data Science using example of
+Algorithmic Trading
 
 ## Installation
 
@@ -54,16 +59,22 @@ up-to-date.
 
 # Notes to remind myself how to create R package
 
-taken from <http://r-pkgs.had.co.nz>
+taken from <http://r-pkgs.had.co.nz> and <https://r-pkgs.org/intro.html>
 
 ## Generating Documentation
 
-Create right title case for the title of the package
+### Title of the package
 
-tools::toTitleCase(“Lazy Trading as sets of R functions to facilitate
-algorithmic trading”)
+Create right title case for the title of the package By running this
+command… `tools::toTitleCase("Learn computer and data science using
+algorithmic trading")` the Title will become: “Learn Computer and Data
+Science using Algorithmic Trading”
+
+### Re-generating documentation
 
 Run this code to re-generate documentation `devtools::document()`
+
+### Fixing Licencse
 
 Run this code to fix license: `usethis::use_mit_license(name = "Vladimir
 Zhbanko")`
@@ -74,7 +85,7 @@ Run this code to add data to the folder `data/` `x <- sample(1000)`
 `usethis::use_data(x)`
 
 Note: use option ’LazyLoad\` to make data available only when user wants
-it always include LazyData: true in your DESCRIPTION. Note: to documente
+it always include LazyData: true in your DESCRIPTION. Note: to document
 dataset see
 <https://stackoverflow.com/questions/2310409/how-can-i-document-data-sets-with-roxygen>
 
@@ -102,9 +113,11 @@ code to NOT execute during package checks
 
 }
 
+## Testing a package
+
 ### Create a test script
 
-Run this command to create a new script with the test scheleton:
+Run this command to create a new script with the test skeleton:
 
 `usethis::use_test("profit_factor.R")`
 
@@ -122,17 +135,12 @@ Details:
 ``` r
 library(testthat)
 library(tidyverse)
-#> Registered S3 methods overwritten by 'ggplot2':
-#>   method         from 
-#>   [.quosures     rlang
-#>   c.quosures     rlang
-#>   print.quosures rlang
-#> -- Attaching packages ------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --
-#> v ggplot2 3.1.1     v purrr   0.3.2
-#> v tibble  2.1.3     v dplyr   0.8.1
+#> -- Attaching packages ------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --
+#> v ggplot2 3.2.0     v purrr   0.3.2
+#> v tibble  2.1.3     v dplyr   0.8.3
 #> v tidyr   0.8.3     v stringr 1.4.0
 #> v readr   1.3.1     v forcats 0.4.0
-#> -- Conflicts ---------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+#> -- Conflicts --------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
 #> x dplyr::filter()  masks stats::filter()
 #> x purrr::is_null() masks testthat::is_null()
 #> x dplyr::lag()     masks stats::lag()
@@ -158,12 +166,83 @@ test_that("test value of the calculation", {
 })
 ```
 
+### Test of the coverage for the script
+
+Test coverage shows you what you’ve tested
+devtools::test\_coverage\_file()
+
+`devtools::test_coverage_file()`
+
+### Automated checks
+
+This will add automatic test coverage badge to the readme file on github
+`usethis::use_coverage()`
+
 ## Checking package
 
 Step 1. `devtools::document()` Step 2. `devtools::run_examples()` Step
 3. Menu ‘Build’ `Clean and Rebuild` Step 4. ‘Check’
 
 `devtools::check()`
+
+## Handling functions that write files
+
+In case functions are writing files there are few considerations to take
+into account:
+
+  - examples section must contain working example of code that writes
+    files
+  - example code must write to the temporary directory defined by
+    `tempdir()` function
+  - after package check performed with `devtools::check()` there should
+    nothing remain in the ‘tmp/’ directory
+
+### Considerations
+
+File names defined by function `tempdir()` would look like this:
+
+``` r
+# > tempdir()
+# [1] "/tmp/RtmpkaFStZ"
+```
+
+File names defined by function `tempfile()` would look like this:
+
+``` r
+# > tempfile()
+# [1] "/tmp/RtmpkaFStZ/file7a33be992b4"
+```
+
+This is example of how function `write_csv` example works:
+
+``` r
+tmp <- tempfile()
+write_csv(mtcars, tmp)
+```
+
+results of this code are correctly stored to the temporary file
+
+however this example from `readr` package function `write_csv` is
+showing that file will be written to the ‘/tmp/’ directory
+
+``` r
+dir <- tempdir()
+write_tsv(mtcars, file.path(dir, "mtcars.tsv.gz"))
+```
+
+### Deleting files after running examples:
+
+We use function `unlink()` to do this:
+
+``` r
+unlink("/tmp/*.csv", recursive = TRUE, force = TRUE)
+```
+
+and we check that there is nothing more remained:
+
+``` r
+dir("/tmp/*.csv")
+```
 
 ## CRAN Note Avoidance
 
@@ -194,6 +273,10 @@ Clone package from GitHub and test check it in Docker Container
 
 `usethis::use_readme_rmd()`
 
+## Automatic check with Travis
+
+`usethis::use_travis()`
+
 ## Upload package to CRAN
 
 ### before release checks
@@ -207,7 +290,8 @@ checking win devel `devtools::check_win_devel()`
 Update news.md file
 
 releasing the package (questions) devtools::release()
+usethis::use\_release\_issue()
 
-### uploading the packge archive to CRAN
+### uploading the package archive to CRAN
 
 <https://cran.r-project.org/submit.html>
