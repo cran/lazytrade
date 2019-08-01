@@ -1,7 +1,7 @@
-20b137b4bcdad1ee097231b7d25be697 *DESCRIPTION
+2192c6f131d23fa962f09e072b84bc72 *DESCRIPTION
 8bde895fe01bb325271d0137274e4457 *LICENSE
 a5c78ec6ecd120f04c55348fa2885b9f *NAMESPACE
-75f4aa45087f644e80b3b1c4d84ec13e *NEWS.md
+9ec5d7e1a53f21480aed572dd2bf4c76 *NEWS.md
 84ece372394aab5af518c4aaabb982a7 *R/check_if_optimize.R
 9d4401d69f80987de26bdf2854dc5f67 *R/create_labelled_data.R
 6a4d7b0051b0f2cfa5f487b1af464eea *R/create_transposed_data.R
@@ -18,8 +18,8 @@ abc2eeb83b93f26483d74faa71dcaedf *R/load_asset_data.R
 5a7c6d68c0e31f0d8cadc591e94ad8c5 *R/log_RL_progress.R
 14f421fa39a6caaf359f2d55224f6aa5 *R/log_RL_progress_mt.R
 2238e9d9c59601b2979f0b7577390759 *R/profit_factor.R
-8f0a03d087c8df03dd149bce3e01043f *R/record_policy.R
-9f81b1f93ff1eb0bfc59841c2a906126 *R/record_policy_mt.R
+1daf343214ac5b428512ca5c2064e9e3 *R/record_policy.R
+75f4d650fba423ce1183d5e665cded46 *R/record_policy_mt.R
 fbda08ec037e4c91d5fea1dd2654bc35 *R/self_learn_ai_R.R
 a0fd76065fd19018c1bea1ea327477cb *R/test_model.R
 72a37a5681da4dbcdb5698847f5bcbe3 *R/to_m.R
@@ -28,7 +28,7 @@ a0fd76065fd19018c1bea1ea327477cb *R/test_model.R
 64eff02c222dbd5e6320b8248e04b840 *R/write_control_parameters.R
 e5cf2a39baeed4f68ed38fab3fce3490 *R/write_control_parameters_mt.R
 517a03a2c429bb87ecb4ca35a5d0beec *R/zzz.R
-92d586f34ac619dca852dd8b436b36b7 *README.md
+4152dd805e7ac7a1e8c58bc7c1f01736 *README.md
 7320dfa1f734aa3ba003f9e302413515 *data/TradeStatePolicy.rda
 7994091058f93ec5f1236b913806fe54 *data/data_trades.rda
 50d6297f607fdec1f9ff24fdd9ee9774 *data/indicator_dataset.rda
@@ -69,8 +69,8 @@ e38864d3fbf73dee50f69832edec7741 *man/price_dataset.Rd
 46a8ac7536f006864fb15c6597bdb556 *man/profit_factor.Rd
 a1a6345aef70d6c0af434ec1a7eadcca *man/profit_factorDF.Rd
 fc02786be62c58f5d53c80172efea57a *man/profit_factor_data.Rd
-b1cf40e0772938c6b6235d9716119294 *man/record_policy.Rd
-8c8ae1066d661742ba536824cd07068d *man/record_policy_mt.Rd
+bb28c8b83f309b8df69cdb4f4ada33fb *man/record_policy.Rd
+d18176ec24b858e0b62f34f6964c8495 *man/record_policy_mt.Rd
 6b43c8b0e16b5ff19d75960692e68b5f *man/result_prev.Rd
 13684df98655c8d29f722a5d82b4bbf9 *man/self_learn_ai_R.Rd
 961569752984aad8815a5a2116cd8e58 *man/test_data_pattern.Rd

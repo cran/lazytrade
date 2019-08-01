@@ -1,5 +1,13 @@
 # lazytrade (development version)
 
+# lazytrade 0.3.4
+
+# Version 0.3.4
+
+## Changes
+
+* corrected bug on file naming for Terminal 3 on function record_policy_mt.R
+* better defined R dependency
 
 # lazytrade 0.3.3
 

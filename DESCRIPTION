@@ -1,7 +1,7 @@
 Package: lazytrade
 Type: Package
 Title: Learn Computer and Data Science using Algorithmic Trading
-Version: 0.3.3
+Version: 0.3.4
 Author: Vladimir Zhbanko
 Maintainer: Vladimir Zhbanko <vladimir.zhbanko@gmail.com>
 Description: Provide sets of functions and methods to learn and practice data science using idea of algorithmic trading.
@@ -15,11 +15,11 @@ BugReports: https://github.com/vzhomeexperiments/lazytrade/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Imports: dplyr, lubridate, tidyverse, h2o, ReinforcementLearning,
-        openssl, magrittr
+Imports: tidyverse, dplyr, lubridate, magrittr, h2o,
+        ReinforcementLearning, openssl
 Suggests: testthat (>= 0.11.0), covr
-Depends: R (>= 2.10)
+Depends: R (>= 3.4.0)
 NeedsCompilation: no
-Packaged: 2019-07-17 21:24:30 UTC; fxtrams
+Packaged: 2019-08-01 10:09:51 UTC; fxtrams
 Repository: CRAN
-Date/Publication: 2019-07-18 06:36:03 UTC
+Date/Publication: 2019-08-01 10:30:02 UTC
