@@ -17,8 +17,10 @@
 #'
 #' @examples
 #'
-#' library(tidyverse)
+#' library(readr)
+#' library(dplyr)
 #' library(lubridate)
+#' library(magrittr)
 #' path_terminal <- system.file("extdata", package = "lazytrade")
 #'
 #' # load and prepare prices data
@@ -36,13 +38,19 @@
 #'
 load_asset_data <- function(path_terminal, trade_log_file, time_period = 1, data_deepth = 50000){
 
-  requireNamespace("tidyverse", quietly = TRUE)
+  requireNamespace("readr", quietly = TRUE)
   requireNamespace("lubridate", quietly = TRUE)
   DFT1 <- try(read_csv(file = file.path(path_terminal, paste0(trade_log_file, time_period, "-", data_deepth, ".csv")),
                        col_names = F),
               silent = TRUE)
   if(class(DFT1)[1] == "try-error") {stop("Error reading file. File with trades may not exist yet!",
                                        call. = FALSE)}
+  #add one column filled with zeroes   DFT1$X3 <- 0
+  #detect if some columns are filled with zeroes...
+  Z_detect <- lapply(DFT1, function(x) all(x == 0)) %>% as.data.frame()
+  #evaluate results, if any values are equal to 0 provide a warning
+  if(any(Z_detect == TRUE)){warning("Warning, one or more columns in the datafile contains zeroes")}
+
   if(!nrow(DFT1)==0){
     # data frame preparation
     DFT1$X1 <- ymd_hms(DFT1$X1)
