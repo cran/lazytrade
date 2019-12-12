@@ -1,5 +1,12 @@
 # lazytrade (development version)
 
+# lazytrade 0.3.8
+
+# Version 0.3.8
+
+## Changes
+
+* added utility `util_generate_password()` to generate passwords e.g. for MT4 platform
 
 # lazytrade 0.3.7
 
