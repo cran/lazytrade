@@ -1,9 +1,9 @@
-e5fd2a6d88f0e6284494219db1597e44 *DESCRIPTION
+aae9b8cb8ec3af3ec83a3244d73cdee5 *DESCRIPTION
 8bde895fe01bb325271d0137274e4457 *LICENSE
-a572b18924ddd1a5ba7ab4b6b026386d *NAMESPACE
-704de6fa8e2d764b731149eb139d1a89 *NEWS.md
+726ec6d888685eec805eaee785f8f5e3 *NAMESPACE
+8550453b1bd044ed0539f8ac9a6539ff *NEWS.md
 b843bd5fee2dfdab8a26d3c4fbf11a46 *R/aml_collect_data.R
-249fa5648b8daa1282fcb32a06061adf *R/aml_make_model.R
+a7e95cb0e69e1884cfcbd268345de8c0 *R/aml_make_model.R
 da774b86190cac77fcd0261659a7acee *R/aml_score_data.R
 6b40e5b636c794202d5ce95f05ef31e2 *R/aml_test_model.R
 75af4f1afa129ec3c1e518e11d2490a2 *R/check_if_optimize.R
@@ -34,8 +34,9 @@ dbb591e7e0e2b43961fc7dc6e970d165 *R/util_generate_password.R
 a50ddba9d79e8fdcd9ef964793cac3c6 *R/write_command_via_csv.R
 f8483273034cb1d62df37658166e3339 *R/write_control_parameters.R
 f784cfe9102fed97fb7848ca10fe8b0d *R/write_control_parameters_mt.R
+85c2f8e4ded52e362721905f691a0cb6 *R/write_ini_file.R
 a6e2cdb67e1d8f5821587586aa21189e *R/zzz.R
-cfc9c0d6642f4b3c58be1911dd6d707b *README.md
+6a470cbb64311593c3816cdf92ef5ae7 *README.md
 af1a35265313d4358b46a288fe1d73b8 *data/DFR.rda
 fefc830288dc363bdcadae9063cb050b *data/EURUSDM15X75.rda
 7320dfa1f734aa3ba003f9e302413515 *data/TradeStatePolicy.rda
@@ -71,7 +72,7 @@ a0619217fea0fbcd3eb1b16bdddc2f50 *man/DFR.Rd
 8ba715276f2751df4271e517fcfa1161 *man/EURUSDM15X75.Rd
 7d2f1490e50e2299bafbdb1c312f7353 *man/TradeStatePolicy.Rd
 e1562b18a062105580b35bc75591789e *man/aml_collect_data.Rd
-13ee47e5b804a3cdbbbdcdd5bbd0258e *man/aml_make_model.Rd
+7329ea8f9b2b77aaffe39bfcc23082a8 *man/aml_make_model.Rd
 d4359ede9c2348360fbc762a0ef5f3f6 *man/aml_score_data.Rd
 2529e1e27111b23dabf71af5198b9826 *man/aml_test_model.Rd
 aacfe8ca6e4e07a12b30c73af6b9a093 *man/check_if_optimize.Rd
@@ -114,9 +115,11 @@ d01cabdabb6e143da35584966b708a56 *man/trading_systemDF.Rd
 f8e5de5ae260f7fac6b9f31df4588aff *man/write_command_via_csv.Rd
 639e9ef30b2370fe719950e02ccd47b3 *man/write_control_parameters.Rd
 aee5078becbbba4cc9a854a7e58dbc78 *man/write_control_parameters_mt.Rd
+c5f0b6fea82845bdbbb7ca4244b6c808 *man/write_ini_file.Rd
 869a2e72776ba06aece3bea8c98b13fc *man/x_test_model.Rd
 e55b13bccf497aa1c8de841e11cbb90f *tests/testthat.R
 8cd6cbcd797eafd6c6e2cee61932fae1 *tests/testthat/test-aml_collect_data.R
+b13b2a26f4110344e056f57736d35830 *tests/testthat/test-aml_make_model.R
 57f26719478e4c605a645a2baf44a421 *tests/testthat/test-aml_test_model.R
 e27df454779c7cbe7a2b9967cf2ddb42 *tests/testthat/test-create_transposed_data.R
 291ce7e1ae5a857722e2e8f9fd0c918c *tests/testthat/test-get_profit_factorDF.R
@@ -127,3 +130,4 @@ be9e73f0054371e7437f3d35c37ab0dd *tests/testthat/test-load_asset_data.R
 57b391c72b1a34e13db5ab90f1b9e3ae *tests/testthat/test-profit_factor.R
 3a7c0db071d200c95fb94a17d5100f96 *tests/testthat/test-to_m.R
 a9c1776489267f5ab44dafb49c0d3e39 *tests/testthat/test-util_generate_password.R
+c4dc1f1618cfaae6f6345ddc1347c595 *tests/testthat/test-write_ini_file.R
