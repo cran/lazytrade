@@ -8,13 +8,18 @@
 [![Travis build
 status](https://travis-ci.org/vzhomeexperiments/lazytrade.svg?branch=master)](https://travis-ci.org/vzhomeexperiments/lazytrade)
 [![codecov](https://codecov.io/gh/vzhomeexperiments/lazytrade/branch/master/graph/badge.svg)](https://codecov.io/gh/vzhomeexperiments/lazytrade)
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/lazytrade)](https://CRAN.R-project.org/package=lazytrade)
 <!-- badges: end -->
 
 The goal of lazytrade is to keep all functions and scripts of the
 lazytrade educational project on
 [UDEMY](https://vladdsm.github.io/myblog_attempt/topics/lazy%20trading/).
 Functions are providing an opportunity to learn Computer and Data
-Science using example of Algorithmic Trading
+Science using example of Algorithmic Trading. Created for Educational
+Purposes only\!
 
 ## Installation
 
@@ -38,15 +43,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(lazytrade)
-library(tidyverse, warn.conflicts = FALSE)
-#> -- Attaching packages -------------------------------------------------------------------------------- tidyverse 1.3.0 --
-#> v ggplot2 3.3.0     v purrr   0.3.3
-#> v tibble  2.1.3     v dplyr   0.8.5
-#> v tidyr   1.0.2     v stringr 1.4.0
-#> v readr   1.3.1     v forcats 0.5.0
-#> -- Conflicts ----------------------------------------------------------------------------------- tidyverse_conflicts() --
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
+library(magrittr, warn.conflicts = FALSE)
 ## basic example code
 # Convert a time series vector to matrix with 64 columns
 macd_m <- seq(1:1000) %>% as.data.frame() %>% to_m(20)
@@ -68,21 +65,21 @@ Multiple log files could be joined into one data object
 library(lazytrade)
 library(readr)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following object is masked from 'package:purrr':
-#> 
-#>     set_names
-#> The following object is masked from 'package:tidyr':
-#> 
-#>     extract
 library(lubridate)
 #> 
 #> Attaching package: 'lubridate'
-#> The following object is masked from 'package:base':
+#> The following objects are masked from 'package:base':
 #> 
-#>     date
+#>     date, intersect, setdiff, union
 
 # files are located in the sample folders
 DFOLDER <- system.file("extdata/RES", package = "lazytrade")
@@ -267,18 +264,12 @@ Example:
 library(testthat)
 #> 
 #> Attaching package: 'testthat'
-#> The following objects are masked from 'package:magrittr':
-#> 
-#>     equals, is_less_than, not
 #> The following object is masked from 'package:dplyr':
 #> 
 #>     matches
-#> The following object is masked from 'package:purrr':
+#> The following objects are masked from 'package:magrittr':
 #> 
-#>     is_null
-#> The following object is masked from 'package:tidyr':
-#> 
-#>     matches
+#>     equals, is_less_than, not
 library(dplyr)
 library(magrittr)
 context("profit_factor")
@@ -464,7 +455,10 @@ then:
 
 spelling `devtools::spell_check()`
 
-checking on R hub `devtools::check_rhub(interactive = F)`
+checking on R hub `rhub::validate_email()` `rhub::check(
+platform="windows-x86_64-devel",
+env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = "always") )`
+`devtools::check_rhub(interactive = F)`
 
 checking with release `devtools::check_win_release()`
 
