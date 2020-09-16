@@ -18,8 +18,8 @@ The goal of lazytrade is to keep all functions and scripts of the
 lazytrade educational project on
 [UDEMY](https://vladdsm.github.io/myblog_attempt/topics/lazy%20trading/).
 Functions are providing an opportunity to learn Computer and Data
-Science using example of Algorithmic Trading. Created for Educational
-Purposes only\!
+Science using example of Algorithmic Trading. Please kindly not that
+*this project was created for Educational Purposes only*\!
 
 ## Installation
 
@@ -36,6 +36,24 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("vzhomeexperiments/lazytrade")
 ```
+
+## Several ideas explored in this package
+
+  - Data manipulation and analysis of performed trades results
+  - Reinforcement Learning for Automated Trading Risk Management
+  - Data manipulation and preparation for Machine Learning (transposing,
+    aggregation, lagging, etc)
+  - Using Deep Learning for prediction of Market Types (Classification)
+  - Using Deep Learning for prediction of future price change
+    (Regression)
+  - Strategy Tests simulations
+  - Utility functions to generate passwords, initialization files,
+    encryption of passwords, etc
+  - Explored idea of building a model using random structures combined
+    with an automated functional (strategy) test to improve model
+    performance
+  - Overall, all functions have working examples with relevant
+    documented sample data included in the package
 
 ## Example - prepare data for machine learning
 
@@ -138,6 +156,8 @@ library(readr)
 
 #generate 8digit password for trading platform
 util_generate_password(salt = 'random text')
+#>          .
+#> 1 ce37D988
 ```
 
 ## Example - generate initialization files for MT4 platform
@@ -180,7 +200,7 @@ summary(cars)
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
 up-to-date.
 
-taken from <http://r-pkgs.had.co.nz> and <https://r-pkgs.org/intro.html>
+taken from <https://r-pkgs.org/intro.html>
 
 ## Generating Documentation
 
@@ -312,12 +332,18 @@ Step 1. `devtools::document()` Step 2. `devtools::run_examples()` Step
 
 ## Locally checking package with –run-donttest enabled
 
+This is now a default option
+
 Whenever  examples construct is used author of the package must insure
 that those examples are running. Such examples are those that would
 require longer test execution. To perform this test package needs to be
 checked with the following command:
 
 `devtools::check(run_dont_test = TRUE)`
+
+whenever a quick check is required:
+
+`devtools::check(run_dont_test = FALSE)` ???
 
 ## Handling functions that write files
 
@@ -412,7 +438,7 @@ full_path <- file.path(dir_name, file_name)
 
 ## Versioning of the package
 
-<http://r-pkgs.had.co.nz/description.html#version>
+<https://r-pkgs.org/description.html#version>
 
 <major>.<minor>.<patch>
 

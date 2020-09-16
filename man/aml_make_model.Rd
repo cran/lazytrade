@@ -2,25 +2,16 @@
 % Please edit documentation in R/aml_make_model.R
 \name{aml_make_model}
 \alias{aml_make_model}
-\title{Function to train Deep Learning regression model for a single currency pair}
+\title{Function to train Deep Learning regression model for a single asset}
 \usage{
-aml_make_model(
-  symbol,
-  num_bars,
-  timeframe,
-  path_model,
-  path_data,
-  force_update = FALSE
-)
+aml_make_model(symbol, timeframe, path_model, path_data, force_update = FALSE)
 }
 \arguments{
 \item{symbol}{Character symbol of the asset for which to train the model}
 
-\item{num_bars}{Number of bars used to detect pattern}
-
 \item{timeframe}{Data timeframe e.g. 1 min}
 
-\item{path_model}{Path where the models are be stored}
+\item{path_model}{Path where the models shall be stored}
 
 \item{path_data}{Path where the aggregated historical data is stored, if exists in rds format}
 
@@ -28,17 +19,17 @@ aml_make_model(
 (useful after h2o engine update)}
 }
 \value{
-Function is writing file object with the model
+Function is writing a file object with the best Deep Learning Regression model
 }
 \description{
 Function is training h2o deep learning model to match future prices of the asset to the indicator pattern.
-Main idea is to be able to predict future prices by solely relying on the most recent indicator pattern.
+Main idea is to be able to predict future prices by solely relying on the recently retrieved indicator pattern.
 This is to mimic traditional algorithmic systems based on the indicator rule attempting to automate optimization process with AI.
 
-Deep learning model structure is obtained from the 6 random combinations of neurons within 4 layers of the network,
+Deep learning model structure is obtained from the 8 random combinations of neurons within 3 hidden layers of the network,
 the most accurate model configuration will be automatically selected
 
-In addition the function will check if there is a need to update the model. To do that function will check
+In addition, the function will check if there is a need to update the model. To do that function will check
 results of the function aml_test_model.R.
 }
 \details{
@@ -54,23 +45,35 @@ library(dplyr)
 library(readr)
 library(h2o)
 library(lazytrade)
+library(lubridate)
 
 path_model <- normalizePath(tempdir(),winslash = "/")
 path_data <- normalizePath(tempdir(),winslash = "/")
 
-data(EURUSDM15X75)
-write_rds(EURUSDM15X75, file.path(path_data, 'EURUSDM15X75.rds'))
+ind = system.file("extdata", "AI_RSIADXUSDJPY60.csv",
+                  package = "lazytrade") \%>\% read_csv(col_names = FALSE)
+
+ind$X1 <- ymd_hms(ind$X1)
+
+
+# data transformation using the custom function for one symbol
+aml_collect_data(indicator_dataset = ind,
+                 symbol = 'USDJPY',
+                 timeframe = 60,
+                 path_data = path_data)
+
+# dataset will be written to the temp directory
 
 # start h2o engine (using all CPU's by default)
 h2o.init()
 
 
 # performing Deep Learning Regression using the custom function
-aml_make_model(symbol = 'EURUSD',
-               num_bars = 75,
-               timeframe = 15,
+aml_make_model(symbol = 'USDJPY',
+               timeframe = 60,
                path_model = path_model,
-               path_data = path_data)
+               path_data = path_data,
+               force_update=FALSE)
 
 # stop h2o engine
 h2o.shutdown(prompt = FALSE)
@@ -84,5 +87,5 @@ Sys.sleep(5)
 
 }
 \author{
-(C) 2019 Vladimir Zhbanko
+(C) 2020 Vladimir Zhbanko
 }

@@ -2,25 +2,15 @@
 % Please edit documentation in R/aml_collect_data.R
 \name{aml_collect_data}
 \alias{aml_collect_data}
-\title{Function to read new data, transform data, save data for further retraining of regression model for a single currency pair}
+\title{Function to read new data, transform, aggregate and save data for further retraining of regression model
+for a single currency pair}
 \usage{
-aml_collect_data(
-  price_dataset,
-  indicator_dataset,
-  symbol,
-  num_bars,
-  timeframe,
-  path_data
-)
+aml_collect_data(indicator_dataset, symbol, timeframe, path_data)
 }
 \arguments{
-\item{price_dataset}{Dataset containing assets prices. It will be used as a label}
-
 \item{indicator_dataset}{Dataset containing assets indicator which pattern will be used as predictor}
 
 \item{symbol}{Character symbol of the asset for which to train the model}
-
-\item{num_bars}{Number of bars used to detect pattern}
 
 \item{timeframe}{Data timeframe e.g. 1 min}
 
@@ -30,22 +20,19 @@ aml_collect_data(
 Function is writing files into Decision Support System folder, mainly file object with the model
 }
 \description{
-Function is collecting data from the files using dedicated function load_asset_data.R.
-One file with a prices of the asset and another file with the corresponding indicator pattern.
-Both data objects are transformed to be suitable for Regression Modelling.
-Indicator values will be placed into the column X1-X75 and price change is in the column 'LABEL'
-Result would be written to new or aggregated to the existing file
+Function is collecting data from the csv files
+Data objects are transformed to be suitable for Regression Modelling.
+Price change will be in the column 'LABEL', column X1 will keep the time index
+Result will be written to a new or aggregated to the existing '.rds' file
 
 Function is also checking that generated dataset is not too big.
-Should the dataset is too big (e.g. > 1000000 rows), then only latest 950000 rows will be used.
-Note: the amount 1000000 rows is not verified in practice, further testing is required.
+Should the dataset is too big (e.g. > 50000 rows), then only latest 40000 rows will be used.
 }
 \details{
-Function is handling shift of the price and indicator datasets.
-New data will be always on the 'bottom' of the dataset
+Function is not handling shift of the price and indicator datasets.
 
-The amount of rows is customizable however it must be selected once for the function to start working.
-Other 'aml_*' functions will rely on this selections, use the same number accordingly!
+This function is relying on the data collection from the dedicated data robot
+Other 'aml_*' functions will work based on the data processed by this function
 }
 \examples{
 
@@ -54,29 +41,26 @@ library(dplyr)
 library(readr)
 library(lubridate)
 library(lazytrade)
+library(magrittr)
 
-path_terminal <- system.file("extdata", package = "lazytrade")
-macd <- load_asset_data(path_terminal = path_terminal, trade_log_file = "AI_Macd",
-                        time_period = 15, data_deepth = "300")
+# sample dataset
+ind = system.file("extdata", "AI_RSIADXUSDJPY60.csv",
+                  package = "lazytrade") \%>\% read_csv(col_names = FALSE)
 
-prices <- load_asset_data(path_terminal = path_terminal, trade_log_file = "AI_CP",
-                          time_period = 15, data_deepth = "300")
+# convert to POSIX format
+ind$X1 <- ymd_hms(ind$X1)
 
+# create temporary path (check output of tempdir() to check the result)
 path_data <- normalizePath(tempdir(),winslash = "/")
 
-
 # data transformation using the custom function for one symbol
-aml_collect_data(price_dataset = prices,
-                 indicator_dataset = macd,
-                 symbol = 'EURUSD',
-                 num_bars = 75,
-                 timeframe = 15,
+aml_collect_data(indicator_dataset = ind,
+                 symbol = 'USDJPY',
+                 timeframe = 60,
                  path_data = path_data)
-
-
 
 
 }
 \author{
-(C) 2019 Vladimir Zhbanko
+(C) 2020 Vladimir Zhbanko
 }
