@@ -54,8 +54,8 @@
 #'                  path_data = path_data)
 #'
 #'
-#' # start h2o engine (using all CPU's by default)
-#' h2o.init()
+#' # start h2o engine
+#' h2o.init(nthreads = 2)
 #'
 #'
 #' # performing Deep Learning Regression using the custom function
@@ -63,7 +63,8 @@
 #'                timeframe = 60,
 #'                path_model = path_model,
 #'                path_data = path_data,
-#'                force_update=FALSE)
+#'                force_update=FALSE,
+#'                num_nn_options = 2)
 #'
 #' path_sbxm <- normalizePath(tempdir(),winslash = "/")
 #' path_sbxs <- normalizePath(tempdir(),winslash = "/")
@@ -116,14 +117,14 @@ aml_test_model <- function(symbol, num_bars, timeframe, path_model, path_data,
   #dataset with date column X1
   y <- readr::read_rds(full_path) %>%
     # remove empty rows
-    na.omit() %>% filter_all(any_vars(. != 0))
+    na.omit() %>% dplyr::filter_all(any_vars(. != 0))
 
 
   #dataset without X1 column (for predictions)
   x <- y  %>%
-    select(-X1, -X2, -X3, -LABEL) %>%
+    dplyr::select(-X1, -X2, -X3, -LABEL) %>%
     # only keep last month for simulation
-    head(num_bars)
+    utils::head(num_bars)
 
   # generate a file name for model
   m_name <- paste0("DL_Regression", "-", symbol,"-", timeframe)
@@ -161,7 +162,7 @@ aml_test_model <- function(symbol, num_bars, timeframe, path_model, path_data,
 
   dat31 <- y %>%
     # using last 600 observations
-    head(num_bars) %>%
+    utils::head(num_bars) %>%
     ## select columns:
     # X1 time index
     # X2 price at the time index
@@ -227,10 +228,10 @@ aml_test_model <- function(symbol, num_bars, timeframe, path_model, path_data,
 
 
   df_tr <- df_res %>%
-    group_by(TR_Level, NB_hold, Symbol) %>%
-    summarise(MaxPerf = max(PnL_NB)) %>%
-    arrange(desc(MaxPerf)) %>%
-    head(1)
+    dplyr::group_by(TR_Level, NB_hold, Symbol) %>%
+    dplyr::summarise(MaxPerf = max(PnL_NB)) %>%
+    dplyr::arrange(desc(MaxPerf)) %>%
+    utils::head(1)
 
 
 

@@ -75,8 +75,8 @@ aml_collect_data(indicator_dataset = ind,
                  path_data = path_data)
 
 
-# start h2o engine (using all CPU's by default)
-h2o.init()
+# start h2o engine
+h2o.init(nthreads = 2)
 
 
 # performing Deep Learning Regression using the custom function
@@ -84,7 +84,8 @@ aml_make_model(symbol = 'USDJPY',
                timeframe = 60,
                path_model = path_model,
                path_data = path_data,
-               force_update=FALSE)
+               force_update=FALSE,
+               num_nn_options = 2)
 
 path_sbxm <- normalizePath(tempdir(),winslash = "/")
 path_sbxs <- normalizePath(tempdir(),winslash = "/")

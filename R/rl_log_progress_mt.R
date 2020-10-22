@@ -1,4 +1,4 @@
-#' Function to log RL progress.
+#' Function to log RL progress, dedicated to Market Types
 #'
 #' @description Function will record Q values during updating of the model. These values will be used by another function
 #'
@@ -17,15 +17,16 @@
 #' library(ReinforcementLearning)
 #' library(dplyr)
 #' library(magrittr)
-#' data(data_trades)
-#' x <- data_trades
-#' states <- c("tradewin", "tradeloss")
-#' actions <- c("ON", "OFF")
+#' data(trading_systemDF)
+#' x <- trading_systemDF
+#' states <- c("BUN", "BUV", "BEN", "BEV", "RAN", "RAV")
+#' actions <- c("ON", "OFF") # 'ON' and 'OFF' are referring to decision to trade with Slave system
 #' control <- list(alpha = 0.7, gamma = 0.3, epsilon = 0.1)
 #'
-#' log_RL_progress(x = x,states = states, actions = actions, control = control)
+#' rl_log_progress_mt(x = x,states = states, actions = actions, control = control)
 #'
-log_RL_progress <- function(x, states, actions, control){
+#'
+rl_log_progress_mt <- function(x, states, actions, control){
   requireNamespace("dplyr", quietly = TRUE)
   requireNamespace("ReinforcementLearning", quietly = TRUE)
 
@@ -43,16 +44,17 @@ log_RL_progress <- function(x, states, actions, control){
   for (i in 2:nrow(x)) {
     # i <- 2
     # State
-    State <- x[i-1,] %>% mutate(State = ifelse(Profit>0, "tradewin", ifelse(Profit<0, "tradeloss", NA))) %$% State
+    State <- x[i-1,]$MarketType
 
     # predict on i
     Action <- ReinforcementLearning::computePolicy(model)[State]
 
     # reward
-    Reward <- x[i,]$Profit
+    Reward <- x[i-1,]$Profit
 
     # next state
-    NextState <- x[i, ] %>% mutate(State = ifelse(Profit>0, "tradewin", ifelse(Profit<0, "tradeloss", NA))) %$% State
+    NextState <- x[i, ]$MarketType
+
     # combine data as dataframe
     i_tupple <- data.frame(State,Action,Reward,NextState,row.names = i, stringsAsFactors = F) %>%
       # change factor column to as.character (required by RL function)
