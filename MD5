@@ -1,7 +1,7 @@
-7e3daffe4ee7858d985f2b04adb02a8c *DESCRIPTION
+ee8f2ed70c2acf1fee1f2a4a61dc8a7d *DESCRIPTION
 8bde895fe01bb325271d0137274e4457 *LICENSE
 09662c2e735ba3d8a2b284857369c526 *NAMESPACE
-9c5500cd7d7558422ee481d16c713e73 *NEWS.md
+df826993c76b6c908f871235fde6d2c8 *NEWS.md
 06792dc84a0dc564075cde6d315be917 *R/aml_collect_data.R
 3c64f0a53c8b940ec21a9f3b9afa416e *R/aml_consolidate_results.R
 3012a3211c6b2db3e504016b25ea66c7 *R/aml_make_model.R
@@ -36,11 +36,11 @@ b8eecf7aafbac338607696969dd27a3b *R/rl_generate_policy.R
 aacd5c425f34cf210567cf604f844918 *R/to_m.R
 89030557359b5a839205e986124106ea *R/util_find_pid.R
 a8b9c1a7a6c2c482e5414b03cfdaa177 *R/util_generate_password.R
-31cbb2a034e0a01583e4e5a57eea567b *R/util_profit_factor.R
+c120eb72d3f123caaa199fc3876d2819 *R/util_profit_factor.R
 2ed9731b92d215ed5954ef3eaf83ef91 *R/write_command_via_csv.R
 70a29bb28cbf4f10c1ba6d1b3c1d7a21 *R/write_ini_file.R
 39dc38e8595a08bdade1ce835d123576 *R/zzz.R
-bf05c2eda4dacf32fe7471c5d59202a1 *README.md
+0fcfecac79c777506bd5ac52aefbbd7c *README.md
 af1a35265313d4358b46a288fe1d73b8 *data/DFR.rda
 fefc830288dc363bdcadae9063cb050b *data/EURUSDM15X75.rda
 7320dfa1f734aa3ba003f9e302413515 *data/TradeStatePolicy.rda
@@ -147,7 +147,7 @@ f3737a95cecd546b5c0434be52024e9b *man/to_m.Rd
 e70752987496f3dad29bdc821a4a01b9 *man/trading_systemDF.Rd
 e4c9bd23cb05df0b1c6dd57a7e99b096 *man/util_find_pid.Rd
 e14bbe4a12d88281279c4016f6ca59c9 *man/util_generate_password.Rd
-1308a847895d3b86783f91cb558d4407 *man/util_profit_factor.Rd
+c2575c4a9f9fdab2968fc76a6245a566 *man/util_profit_factor.Rd
 203a92b3033b29156c88ee747bc7d816 *man/write_command_via_csv.Rd
 c85238b9f324bfb9233ded533fba6439 *man/write_ini_file.Rd
 fb08efd488442652ce50a8545083f7d8 *man/x_test_model.Rd
@@ -168,5 +168,5 @@ be9e73f0054371e7437f3d35c37ab0dd *tests/testthat/test-load_asset_data.R
 3901f2fb3e12f0f1bb42aaedf51d9545 *tests/testthat/test-opt_aggregate_results.R
 3a7c0db071d200c95fb94a17d5100f96 *tests/testthat/test-to_m.R
 a9c1776489267f5ab44dafb49c0d3e39 *tests/testthat/test-util_generate_password.R
-86cc20a1bec6e32af014796a54547826 *tests/testthat/test-util_profit_factor.R
+74ce02e03b29d29ae980d1554292562e *tests/testthat/test-util_profit_factor.R
 c4dc1f1618cfaae6f6345ddc1347c595 *tests/testthat/test-write_ini_file.R
